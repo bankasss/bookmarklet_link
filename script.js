@@ -12,14 +12,23 @@
   if (url.indexOf("booth.pm") > 0) {
     var item_num = url.slice(-7);
     var url = "https://booth.pm/ja/items/" + item_num;
-    var title = $(".bind-item-name").eq(0).text();
+   
+    if ($("h1").hasClass("bind-item-name")) {
+      var title = $(".bind-item-name").eq(0).text();
+    } else if ($("h2").hasClass("u-tpg-title1")) {
+      var title = $(".u-tpg-title1").eq(0).text();
+    } else {
+      alert('タイトルを取得できませんでした');
+      flag = 0;
+    }
+
     if ($("img").hasClass("header-image")) {
       var shop = $('.header-image').eq(0).attr("alt");
-    }else if($("img").hasClass("at-item-summary")) {
+    } else if($("img").hasClass("at-item-summary")) {
       var shop = $('.at-item-summary').eq(0).attr("alt");
-    }else if($("span").hasClass("shop-name-label")){
-      var shop = $('.at-item-summary').eq(0).text();
-    }else {
+    } else if($("span").hasClass("shop-name-label")){
+      var shop = $('.shop-name-label').eq(0).text();
+    } else {
       alert('ショップ名を取得できませんでした');
       flag = 0;
     }
@@ -27,7 +36,7 @@
     var ogp = $("meta[property='og:title']").attr('content').split("｜");
     var title = ogp[0];
     var shop = ogp[1];
-  }else {
+  } else {
     alert('このURLは使えません');
     flag = 0;
   }
