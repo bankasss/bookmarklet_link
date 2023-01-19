@@ -42,7 +42,7 @@
   }
 
   if (flag == 1) {
-    var text = title + " | " + shop +  "\r" + url;
+    var text = title + "｜" + shop +  "\r" + url;
     var $textarea = $('<textarea class="copy_txt"></textarea>');
     $textarea.text(text);
     $("body").append($textarea);
